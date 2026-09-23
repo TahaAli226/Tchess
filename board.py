@@ -30,7 +30,16 @@ class Board:
             print(f"{rank} {" ".join(symbols)} {rank}")
         print(" ".join(letters))
 
-if __name__ == "__main__":
+    def translate(self,x_pos,y_pos):
+        letters_map = {"a":0, "b":1, "c":2, "d":3, "e":4, "f":5, "g":6, "h":7}
+        numbers_map = {"1":7, "2":6, "3":5, "4":4, "5":3, "6":2, "7":1, "8":0}
+        col = letters_map[x_pos] 
+        row = numbers_map[y_pos]
+        return row, col
     
-    test = Board()
-    test.display_board()
+    def move(self,p_pos,m_pos):
+        piece_pos = self.translate(p_pos[0], p_pos[1])
+        move_pos = self.translate(m_pos[0], m_pos[1])
+        self.__grid[move_pos[0]][move_pos[1]]  = self.__grid[piece_pos[0]][piece_pos[1]]
+        self.__grid[piece_pos[0]][piece_pos[1]] = None
+
