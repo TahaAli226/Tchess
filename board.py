@@ -27,7 +27,7 @@ class Board:
 
                 else:
                     symbols.append(cell.shape())
-            print(f"{rank} {" ".join(symbols)} {rank}")
+            print(f"{rank} {' '.join(symbols)} {rank}")
         print(" ".join(letters))
 
     def translate(self,x_pos,y_pos):

@@ -42,7 +42,7 @@ class Session:
         letters=["a","b","c","d","e","f","g","h"]
         numbers = [str(x) for x in range (1,9,1)]
         if len(text) != 4:
-            self._message = "move must be made with four valid characters ex:<a2a3>\n---------------------\ntype <exit> to exit the game and <restart> to restart the game\n"
+            self._message = "move must be made with four valid characters ex:<a2a3>\n---------------------\ntype <exit> or <quit> to exit the game and <restart> to restart the game\n"
             return False
         elif text[0] not in letters or text[2] not in letters:
             self._message = "invalid position"
