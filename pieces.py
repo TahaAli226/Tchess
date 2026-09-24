@@ -1,12 +1,19 @@
 class Piece:
     def __init__(self,color):
         self._color = color 
+
     def shape(self):
         if self._color == "white":
             return self.white
         else:
             return self.black 
 
+    def check_color(self):
+        if self._color == "white":
+            return "white"
+        else: 
+            return "black"
+        
 class Pawn(Piece):
     white = "♟"
     black = "♙"

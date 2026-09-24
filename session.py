@@ -36,8 +36,10 @@ class Session:
             piece_pos = reply[0:2]
             move_pos = reply[2:]
 
-            self._board.move(piece_pos,move_pos)
-
+            action = self._board.move(piece_pos,move_pos)
+            if action != None:
+                self._message = action 
+            
     def validation(self, text):
         letters=["a","b","c","d","e","f","g","h"]
         numbers = [str(x) for x in range (1,9,1)]
