@@ -36,20 +36,30 @@ class Board:
         col = letters_map[x_pos] 
         row = numbers_map[y_pos]
         return row, col
-    
-    def move(self,p_pos,m_pos):
+
+    def check_square(self, mov_pos):
+        row_mov_pos, col_mov_pos = mov_pos
+        if self.__grid[row_mov_pos][col_mov_pos] == None:
+            return True 
+        else: 
+            return False
+        
+    def move(self,p_pos, m_pos):
         piece_pos = self.translate(p_pos[0], p_pos[1])
         move_pos = self.translate(m_pos[0], m_pos[1])
         row_piece_pos, col_piece_pos = piece_pos
         row_mov_pos, col_mov_pos = move_pos
-
+        check_mov = self.check_square(move_pos)
         if self.__grid[row_piece_pos][col_piece_pos] == None:
             return "Can't move what's not there"
         
         elif self.__grid[row_mov_pos][col_mov_pos] != None:
             if self.__grid[row_piece_pos][col_piece_pos].check_color() == self.__grid[row_mov_pos][col_mov_pos].check_color():
-                return "You can't take your own pieces lol"
-            
+                return f"Illegal move can't take your own pieces"
+        
+        if self.__grid[row_piece_pos][col_piece_pos].verify_move(piece_pos, move_pos, check_mov) == False:
+                return f"Illegal {self.__grid[row_piece_pos][col_piece_pos].piece_name()} move"
+
         self.__grid[row_mov_pos][col_mov_pos] = self.__grid[row_piece_pos][col_piece_pos]
         self.__grid[row_piece_pos][col_piece_pos] = None
 
